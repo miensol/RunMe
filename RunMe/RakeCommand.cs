@@ -37,14 +37,7 @@ namespace miensol.RunMe
 
         private static ProcessStartInfo CreateProcessStartInfo(string workingDir, string arguments)
         {
-            return new ProcessStartInfo(RUBY_EXE, arguments)
-            {
-                WorkingDirectory = workingDir,
-                RedirectStandardError = true,
-                RedirectStandardOutput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
+            return ProcessFactory.Create(RUBY_EXE, arguments, workingDir);
         }
     }
 }

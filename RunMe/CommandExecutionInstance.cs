@@ -31,10 +31,12 @@ namespace miensol.RunMe
         public void Start()
         {
             var processStart = _command.CreateProcessStartInfo();
-            var process = new Process {StartInfo = processStart};
-            process.Start();
-            StartReadingOutput(process.StandardOutput);
-            StartReadingOutput(process.StandardError);
+            OutputLine(processStart.FileName + " " + processStart.Arguments);
+            _process = new Process {StartInfo = processStart, EnableRaisingEvents = true};
+            _process.Exited += (sender, args) => OutputLine("Process exited with code: " + _process.ExitCode);
+            _process.Start();
+            StartReadingOutput(_process.StandardOutput);
+            StartReadingOutput(_process.StandardError);
         }
 
         private async void StartReadingOutput(StreamReader streamToReadFrom)
@@ -42,9 +44,14 @@ namespace miensol.RunMe
             while (!streamToReadFrom.EndOfStream)
             {
                 string line = await streamToReadFrom.ReadLineAsync();
-                _outputs.Enqueue(line + Environment.NewLine);
-                OutputChanged();
+                OutputLine(line);
             }
+        }
+
+        private void OutputLine(string line)
+        {
+            _outputs.Enqueue(line + Environment.NewLine);
+            OutputChanged();
         }
 
         public Guid Id { get; set; }
@@ -52,7 +59,13 @@ namespace miensol.RunMe
         public Action<string> TextOutputer { get; set; }
 
         private readonly ConcurrentQueue<string> _outputs = new ConcurrentQueue<string>();
+        private Process _process;
 
         private event Action OutputChanged;
+
+        public void WaitUntilDone()
+        {
+            _process.WaitForExit();
+        }
     }
 }

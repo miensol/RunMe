@@ -131,6 +131,7 @@
     <Compile Include="CommandsModel.cs" />
     <Compile Include="Guids.cs" />
     <Compile Include="ICommandToRun.cs" />
+    <Compile Include="ProcessFactory.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="RakeCommand.cs" />
     <Compile Include="RakeCommandSearcher.cs" />
