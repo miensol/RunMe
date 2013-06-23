@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CachedCommands.cs" />
+    <Compile Include="CommandExecutionInstance.cs" />
     <Compile Include="CommandsExecutor.cs" />
     <Compile Include="CommandsModel.cs" />
     <Compile Include="Guids.cs" />

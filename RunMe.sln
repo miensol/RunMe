@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B7712510-3E6D-4DCA-A3CB-F0A45BC3D92D}"
 	ProjectSection(SolutionItems) = preProject
 		IntegrationTests.testsettings = IntegrationTests.testsettings
+		RunMe.vsmdi = RunMe.vsmdi
 		UnitTests.testsettings = UnitTests.testsettings
 	EndProjectSection
 EndProject
@@ -16,6 +17,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunMe.Tests", "RunMe.Tests\RunMe.Tests.csproj", "{5A71F79F-5ADF-4038-A849-CC3AABCDAE55}"
 EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = RunMe.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
