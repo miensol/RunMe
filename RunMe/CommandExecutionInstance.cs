@@ -34,18 +34,11 @@ namespace miensol.RunMe
             OutputLine(processStart.FileName + " " + processStart.Arguments);
             _process = new Process {StartInfo = processStart, EnableRaisingEvents = true};
             _process.Exited += (sender, args) => OutputLine("Process exited with code: " + _process.ExitCode);
+            _process.OutputDataReceived += (sender, args) => OutputLine(args.Data);
+            _process.ErrorDataReceived += (sender, args) => OutputLine(args.Data);
             _process.Start();
-            StartReadingOutput(_process.StandardOutput);
-            StartReadingOutput(_process.StandardError);
-        }
-
-        private async void StartReadingOutput(StreamReader streamToReadFrom)
-        {
-            while (!streamToReadFrom.EndOfStream)
-            {
-                string line = await streamToReadFrom.ReadLineAsync();
-                OutputLine(line);
-            }
+            _process.BeginOutputReadLine();
+            _process.BeginErrorReadLine();
         }
 
         private void OutputLine(string line)
