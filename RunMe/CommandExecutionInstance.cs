@@ -31,19 +31,27 @@ namespace miensol.RunMe
         public void Start()
         {
             var processStart = _command.CreateProcessStartInfo();
-            OutputLine(processStart.FileName + " " + processStart.Arguments);
+            PushOutput(processStart.FileName + " " + processStart.Arguments);
             _process = new Process {StartInfo = processStart, EnableRaisingEvents = true};
-            _process.Exited += (sender, args) => OutputLine("Process exited with code: " + _process.ExitCode);
-            _process.OutputDataReceived += (sender, args) => OutputLine(args.Data);
-            _process.ErrorDataReceived += (sender, args) => OutputLine(args.Data);
+            _process.Exited += (sender, args) => PushOutput("Process exited with code: " + _process.ExitCode);
+            _process.OutputDataReceived += (sender, args) => PushOutput(args.Data);
+            _process.ErrorDataReceived += (sender, args) => PushOutput(args.Data);
             _process.Start();
             _process.BeginOutputReadLine();
             _process.BeginErrorReadLine();
         }
 
-        private void OutputLine(string line)
+        private void PushOutput(string text)
         {
-            _outputs.Enqueue(line + Environment.NewLine);
+            if (text == null)
+            {
+                return;
+            }
+            if (text.EndsWith(Environment.NewLine) == false)
+            {
+                text += Environment.NewLine;
+            }
+            _outputs.Enqueue(text);
             OutputChanged();
         }
 
