@@ -7,28 +7,39 @@
     <Buttons>
       <Button guid="guidRunMeCmd" id="idRunMeCmd" type="Button" priority="0x500">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_TOOLS_CMDLINE"/>
-        <Icon guid="guidImages" id="idConsoleImage"/>
         <Strings>
-          <ButtonText>RunMe</ButtonText>
+          <ButtonText>&amp;Run Me</ButtonText>
+          <MenuText>&amp;Run Me</MenuText>
         </Strings>
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        
+        <Icon guid="guidImages" id="idConsoleImage"/>
+
       </Button>
       
       
       
       
     </Buttons>
-    
-    
-
 
     <Bitmaps>
       <Bitmap guid="guidImages" href="Resources\Toolbar.png"/>
     </Bitmaps>
+
+
+
   </Commands>
 
   <VisibilityConstraints>
     <VisibilityItem guid="guidRunMeCmd" id="idRunMeCmd" context="UICONTEXT_SolutionExists" />
   </VisibilityConstraints>
+
+  <KeyBindings>
+    <KeyBinding guid="guidRunMeCmd" id="idRunMeCmd" key1="R" mod1="Control Alt"
+                editor="guidVSStd97"/>
+  </KeyBindings>
+
 
 
 
@@ -40,6 +51,7 @@
     <GuidSymbol name="guidImages" value="{44D3F146-9BD7-4B0E-BEEF-8BC1392C25A9}">
       <IDSymbol name="idConsoleImage" value="1"/>
     </GuidSymbol>
+    
   </Symbols>
 
 </CommandTable>  

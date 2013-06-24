@@ -7,7 +7,9 @@
                  xmlns:runMe="clr-namespace:miensol.RunMe"
                  mc:Ignorable="d"
                  WindowStyle="None"
-                 Title="Type Command" Height="140" Width="320" d:DataContext="{d:DesignInstance runMe:CommandsModel}">
+                 Title="Type Command" Height="140" Width="320" d:DataContext="{d:DesignInstance runMe:CommandsModel}"
+                 KeyDown="KeyDownOnMainWindow"
+                 >
     <ui:DialogWindow.Resources>
         <Style TargetType="ListBoxItem">
             <Style.Resources>

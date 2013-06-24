@@ -34,6 +34,8 @@ namespace RunMe.Tests
         {
             _instance.Start();
 
+            _instance.WaitUntilDone();
+
             _output.Where(text => text.Contains("Windows IP Configuration")).Should().NotBeEmpty();
         }
 

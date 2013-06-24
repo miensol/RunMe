@@ -27,16 +27,26 @@ namespace miensol.RunMe
 
         private void MouseOverCommandItem(object sender, MouseEventArgs e)
         {
-            var model = (CommandsModel) DataContext;
+            var model = GetModel();
             var command = (ICommandToRun)((FrameworkElement) sender).DataContext;
             model.CommandToExecute = command;
         }
 
         private void MouseClickedCommandItem(object sender, MouseButtonEventArgs e)
         {
-            var model = (CommandsModel)DataContext;
+            var model = GetModel();
             var command = (ICommandToRun)((FrameworkElement)sender).DataContext;
             model.SetCommandToExecuteAndStart(command);
+        }
+
+        private CommandsModel GetModel()
+        {
+            return (CommandsModel)DataContext;
+        }
+
+        private void KeyDownOnMainWindow(object sender, KeyEventArgs e)
+        {
+            GetModel().StartCommandIfEnter(e.Key);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using miensol.RunMe.Annotations;
 using System.Linq;
 
@@ -108,9 +109,22 @@ namespace miensol.RunMe
         public void SetCommandToExecuteAndStart(ICommandToRun command)
         {
             CommandToExecute = command;
-            if (StartExecutingCommand != null)
+            RaiseStartExecutingCommand();
+        }
+
+        private void RaiseStartExecutingCommand()
+        {
+            if (StartExecutingCommand != null && CommandToExecute != null)
             {
-                StartExecutingCommand(command);
+                StartExecutingCommand(CommandToExecute);
+            }
+        }
+
+        public void StartCommandIfEnter(Key key)
+        {
+            if (key == Key.Enter)
+            {
+                RaiseStartExecutingCommand();   
             }
         }
     }
