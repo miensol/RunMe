@@ -10,6 +10,7 @@ namespace miensol.RunMe
         public const string guidRunMeCmdSetString = "39779841-efdb-4f39-bf3e-9063745e8ca2";
 
         public static readonly Guid guidRunMeCmdSet = new Guid(guidRunMeCmdSetString);
+        public const string OptionsPageGuid = "BCEB372B-76B0-425D-9DE5-7DA3E20300C1";
     };
 
     static class PkgCmdIDs

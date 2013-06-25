@@ -131,6 +131,15 @@
     <Compile Include="CommandsModel.cs" />
     <Compile Include="Guids.cs" />
     <Compile Include="ICommandToRun.cs" />
+    <Compile Include="Options\OptionsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Options\OptionsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Options\OptionsView.Designer.cs">
+      <DependentUpon>OptionsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProcessFactory.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="RakeCommand.cs" />
@@ -151,6 +160,9 @@
     <Compile Include="VsSeviceLocator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Options\OptionsView.resx">
+      <DependentUpon>OptionsView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

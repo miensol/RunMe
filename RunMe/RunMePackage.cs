@@ -6,6 +6,7 @@ using Microsoft.Win32;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
+using miensol.RunMe.Options;
 
 namespace miensol.RunMe
 {
@@ -27,6 +28,8 @@ namespace miensol.RunMe
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [Guid(Guids.guidRunMePkgString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
+    [ProvideOptionPage(typeof(OptionsPage),
+    "Run Me", "Run Me", 0, 0, true)]
     public sealed class RunMePackage : Package
     {
         private RunMeExecuteCommandHandler _runMeCommandHandler;
